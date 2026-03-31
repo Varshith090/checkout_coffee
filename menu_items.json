@@ -1,0 +1,38 @@
+{
+  "cappuccino": {
+    "price": 200,
+    "cost": 35
+  },
+  "espresso shot": {
+    "price": 80,
+    "cost": 10
+  },
+  "cold coffee frappe": {
+    "price": 250,
+    "cost": 60
+  },
+  "chai": {
+    "price": 60,
+    "cost": 10
+  },
+  "hot chocolate": {
+    "price": 200,
+    "cost": 50
+  },
+  "iced tea": {
+    "price": 160,
+    "cost": 20
+  },
+  "sandwich": {
+    "price": 120,
+    "cost": 20
+  },
+  "croissant": {
+    "price": 200,
+    "cost": 60
+  },
+  "cookie": {
+    "price": 100,
+    "cost": 15
+  }
+}
