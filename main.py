@@ -1,29 +1,22 @@
-"""Coffee Shop Checkout System - Main Program"""
+"""Coffee Shop Checkout System"""
 
 import tkinter as tk
-from tkinter import ttk
-from app.admin import menu_manager
-from app.admin import AdminPanel
-from app.admin import COLORS
-from app.checkout import CoffeeShopGUI
+from app.admin import menu_manager, COLORS
 from app.reports import ReportsTab
+from app.gui import CoffeeShopGUI, AdminPanel, ReportsTabGUI
 
 root = tk.Tk()
 
-# Create reports tab instance first
-reports_tab = ReportsTab(menu_manager=menu_manager, tax_rate=0.18)
+# Create business logic
+reports = ReportsTab(menu_manager, 0.18)
 
-# Pass reports_tab to CoffeeShopGUI
-app = CoffeeShopGUI(root, menu_manager=menu_manager, admin_panel_class=AdminPanel, colors=COLORS, reports_tab=reports_tab)
+# Create GUI
+app = CoffeeShopGUI(root, menu_manager, AdminPanel, COLORS, reports)
 
-# Find notebook and add reports tab
-notebook_widget = None
-for child in root.winfo_children():
-    if isinstance(child, ttk.Notebook):
-        notebook_widget = child
-        break
-
-if notebook_widget:
-    reports_tab.create_reports_tab(notebook_widget)
+# Setup reports tab
+notebook = next((c for c in root.winfo_children() if hasattr(c, 'tabs')), None)
+if notebook:
+    gui_reports = ReportsTabGUI(reports, root, COLORS)
+    gui_reports.create_reports_tab(notebook)
 
 root.mainloop()
